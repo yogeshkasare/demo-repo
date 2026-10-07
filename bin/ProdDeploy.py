@@ -1,7 +1,7 @@
 import time
 
 start = time.monotonic()
-duration = 60
+duration = 15
 
 print("Deployment started", flush=True)
 
@@ -17,6 +17,6 @@ while True:
     counter += 1
 
     remaining = duration - (time.monotonic() - start)
-    time.sleep(min(5, max(0, remaining)))
+    time.sleep(min(3, max(0, remaining)))
 
 print("Deployment completed", flush=True)
