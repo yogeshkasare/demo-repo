@@ -1,32 +1,22 @@
-import sys
 import time
 
-print("Starting demo deployment...", flush=True)
-time.sleep(2)
+start = time.monotonic()
+duration = 60
 
-print("Checking deployment configuration...", flush=True)
-time.sleep(2)
+print("Deployment started", flush=True)
 
-print("Uploading deployment artifact...", flush=True)
-time.sleep(2)
+counter = 1
 
-print("Upload completed successfully.", flush=True)
-time.sleep(2)
+while True:
+    elapsed = time.monotonic() - start
 
-# Simulate the AWS Glue error seen in the customer logs
-print(
-    "An error occurred (IdempotentParameterMismatchException) "
-    "when calling the CreateJob operation: "
-    "Job already submitted with different configuration.",
-    flush=True
-)
+    if elapsed >= duration:
+        break
 
-time.sleep(2)
+    print(f"Deployment processing... {counter}", flush=True)
+    counter += 1
 
-print("Continuing deployment after the error...", flush=True)
-time.sleep(2)
+    remaining = duration - (time.monotonic() - start)
+    time.sleep(min(5, max(0, remaining)))
 
-print("Deployment script completed.", flush=True)
-
-# Important: return success even though we printed an error
-sys.exit(0)
+print("Deployment completed", flush=True)
