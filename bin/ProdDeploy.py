@@ -1,7 +1,7 @@
 import time
 
 start = time.monotonic()
-duration = 15
+duration = 35
 
 print("Deployment started", flush=True)
 
